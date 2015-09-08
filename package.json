@@ -1,0 +1,29 @@
+{
+    "name": "JXSessionStore",
+    "version": "0.0.1",
+    "description": "JXCore session store using jxcore.store.shared",
+    "author": "-",
+    "contributors": [],
+    "scripts": {
+        "start": "jx app.js"
+    },
+    "main": "app.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jojoxd/JXSessionStore.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jojoxd/JXSessionStore/issues"
+    },
+    "keywords": [
+        "JXCore",
+		"express-session",
+		"session store"
+    ],
+    "dependencies": {
+        "express": "~4.13.3"
+    },
+    "preferGlobal": false,
+    "private": true,
+    "license": "MIT or something"
+}
