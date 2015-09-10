@@ -13,7 +13,11 @@ HTTPSERVER.define = function(){
 HTTPSERVER.logic = function(serverID){
 	var app = express(),
 		server = require('http').createServer(app);
-	
+
+  jxcore.tasks.on('message', function(tid, param) {
+    jxcore.utils.console.log("thread no", param.cmd, process.threadId, jxcore.store.shared.read(param.sid), param.cmd == "get" ? "green" : "yellow");
+  });
+
 	app.use(new session({
 		store: new JXSessionStore(),
 		cookie: {
@@ -35,9 +39,11 @@ HTTPSERVER.logic = function(serverID){
 		
 		res.end("done");
 	});
-	
-	server.listen(80, function(){
-		console.log("server %s (thread %s) listening on port 80", serverID, process.threadId);
+
+  var port = process.argv[2] || 80;
+
+	server.listen(port, function(){
+		console.log("server %s (thread %s) listening on port", port, serverID, process.threadId);
 	});
 }
 
