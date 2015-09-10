@@ -20,6 +20,7 @@ module.exports = function(sess){
 		//console.log("get %s: %s", sessionId, JSON.stringify(session));
 		var err = null;
 		callback(err, session);
+    process.sendToThreads({ tid : process.threadId, sid : sessionId, cmd : "get" });
 	}
 
 	JXSessionStore.prototype.set = function(sessionId, session, callback){
@@ -29,7 +30,7 @@ module.exports = function(sess){
 		jxcore.store.shared.set(sessionId, JSON.stringify(session));
 		var err = null;
 		callback(err, session);
-    process.sendToThreads({ tid : process.threadId, sid : sessionId});
+    process.sendToThreads({ tid : process.threadId, sid : sessionId, cmd : "set" });
 	}
 
 	JXSessionStore.prototype.touch = function(sessionId, session, callback){

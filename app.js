@@ -15,7 +15,7 @@ HTTPSERVER.logic = function(serverID){
 		server = require('http').createServer(app);
 
   jxcore.tasks.on('message', function(tid, param) {
-    jxcore.utils.console.log("thread no", process.threadId, jxcore.store.shared.read(param.sid));
+    jxcore.utils.console.log("thread no", param.cmd, process.threadId, jxcore.store.shared.read(param.sid), param.cmd == "get" ? "green" : "yellow");
   });
 
 	app.use(new session({
