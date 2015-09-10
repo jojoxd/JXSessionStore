@@ -29,6 +29,7 @@ module.exports = function(sess){
 		jxcore.store.shared.set(sessionId, JSON.stringify(session));
 		var err = null;
 		callback(err, session);
+    process.sendToThreads({ tid : process.threadId, sid : sessionId});
 	}
 
 	JXSessionStore.prototype.touch = function(sessionId, session, callback){
